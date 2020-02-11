@@ -1,6 +1,6 @@
 package com.pipelinetest.pipetest.controller;
 
-import com.pipelinetest.pipetest.Greeting;
+import com.pipelinetest.pipetest.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,8 @@ public class MainController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/g")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    public Response greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+        return new Response(counter.incrementAndGet(), String.format(template, name));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/tester")
@@ -35,14 +35,14 @@ public class MainController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/n")
-    public Greeting greetingName(@RequestParam(value = "name", defaultValue = "World") String name) {
+    public Response greetingName(@RequestParam(value = "name", defaultValue = "World") String name) {
         LOGGER.info("The /n endpoint was called");
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+        return new Response(counter.incrementAndGet(), String.format(template, name));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/greeting/{personName}")
-    public Greeting greetingPost(@PathVariable("personName") String personName) {
-        return new Greeting(counter.incrementAndGet(), String.format(template, personName));
+    public Response greetingPost(@PathVariable("personName") String personName) {
+        return new Response(counter.incrementAndGet(), String.format(template, personName));
     }
 
 }
