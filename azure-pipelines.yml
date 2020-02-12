@@ -14,11 +14,11 @@ steps:
 - task: UsePythonVersion@0
   displayName: 'Use Python 3.x'
 
-- bash: 'ls'
+- bash: 'ls -la'
   workingDirectory: ''
   displayName: 'List files'
 
-- bash: 'python $(Build.StagingDirectory)/example_test.py'
+- bash: 'python src/test/python/example_test.py'
   workingDirectory: ''
   displayName: 'Run Example Python'
 
