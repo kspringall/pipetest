@@ -18,7 +18,7 @@ steps:
   workingDirectory: ''
   displayName: 'List files'
 
-- bash: 'python ~/src/test/python/example_test.py'
+- bash: 'python src/test/python/example_test.py'
   workingDirectory: ''
   displayName: 'Run Example Python'
 
