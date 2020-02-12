@@ -5,27 +5,44 @@
 
 trigger:
 - master
+- develop
+- features/*
+- hotfix/*
+- release/*
 
 pool:
   vmImage: 'ubuntu-latest'
-
+ 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-# Python script
-# Run a Python file or inline script
-- task: PythonScript@0
+- task: UsePythonVersion@0
+  displayName: 'Use Python 3.x'
+ 
+- bash: |
+   pip install pytest 
+   pip install pytest-cov 
+   pip install pytest-xdist 
+   pip install pytest-bdd 
+ 
+  displayName: 'Install a bunch of pip packages.'
+ 
+ 
+- bash: 'pytest --junitxml=$(Build.StagingDirectory)/010.xml'
+  workingDirectory: '010_CrackingCodeBasic'
+  displayName: 'Run test 010'
+ 
+- bash: 'pytest --junitxml=$(Build.StagingDirectory)/020.xml'
+  workingDirectory: '020_CrackingIntermediate'
+  displayName: 'Run test 020'
+ 
+- task: PublishTestResults@2
+  displayName: 'Publish test result /010.xml'
   inputs:
-    scriptSource: filePath
-    scriptPath: '$(System.DefaultWorkingDirectory)/test/python/' # Required when scriptSource == filePath
-    script: 'example_test.py' # Required when scriptSource == inline
-    #arguments: # Optional
-    #pythonInterpreter: # Optional
-    #workingDirectory: # Optional
-    #failOnStderr: false # Optional
+    testResultsFiles: '$(Build.StagingDirectory)/010.xml'
+    testRunTitle: 010
+ 
+- task: PublishTestResults@2
+  displayName: 'Publish test result /020.xml'
+  inputs:
+    testResultsFiles: '$(Build.StagingDirectory)/020.xml'
+    testRunTitle: 020
+    
