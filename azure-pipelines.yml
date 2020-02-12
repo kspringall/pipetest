@@ -18,7 +18,7 @@ steps:
   workingDirectory: ''
   displayName: 'List files'
 
-- bash: 'ls -la src'
+- bash: 'ls -la src/main'
   workingDirectory: ''
   displayName: 'List test python files'
 
