@@ -23,7 +23,7 @@ steps:
 - task: PythonScript@0
   inputs:
     scriptSource: filePath
-    scriptPath: 'test/python/' # Required when scriptSource == filePath
+    scriptPath: '$(System.DefaultWorkingDirectory)/test/python/' # Required when scriptSource == filePath
     script: 'example_test.py' # Required when scriptSource == inline
     #arguments: # Optional
     #pythonInterpreter: # Optional
