@@ -18,6 +18,10 @@ steps:
   workingDirectory: ''
   displayName: 'List files'
 
+- bash: 'ls -la src/test/python'
+  workingDirectory: ''
+  displayName: 'List test python files'
+
 - bash: 'python src/test/python/example_test.py'
   workingDirectory: ''
   displayName: 'Run Example Python'
