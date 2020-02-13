@@ -3,20 +3,33 @@ package com.pipelinetest.pipetest;
 public class Response {
 
     private final long id;
-    private final String content;
+    private final String message;
 
-    public Response(long id, String content) {
+    public Response(long id) {
         this.id = id;
-        this.content = content;
+        this.message = "";
+    }
+
+    public Response(long id, String message) {
+        this.id = id;
+        this.message = message;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getContent() {
-        return content;
+    public String getMessage() { return message; }
+
+    // Creating toString
+    @Override
+    public String toString()
+    {
+        return "{id="
+                + id
+                + ", message=\""
+                + message + "\"}";
     }
 
-    public String getMessage() { return "This is a test message"; }
 }
+
